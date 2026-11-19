@@ -87,7 +87,7 @@ button {
 }
 
 #music {
-  width: min(100%, 420px);
+  width: min(100%, 320px);
   aspect-ratio: 16 / 9;
   border: 0;
   border-radius: 10px;
@@ -97,21 +97,17 @@ button {
 .petal {
   position: fixed;
   top: -30px;
-  color: #e8b8c7;
+  color: #e8b8c8;
   pointer-events: none;
-  animation: fall linear forwards;
   z-index: 10;
+  animation: fall linear forwards;
 }
 
 @keyframes fall {
   to {
-    transform: translateY(110vh) rotate(500deg);
+    transform: translateY(110vh) rotate(360deg);
     opacity: 0;
   }
-}
-
-#next {
-  display: none;
 }
 </style>
 </head>
@@ -130,33 +126,31 @@ button {
 
   <div id="counter">A LITTLE MEMORY · 1 OF 5</div>
 
-  <img id="photo" src="memory-1.jpg" alt="A special memory">
+  <img id="photo" src="IMG_0911_Original.jpeg" alt="A special memory">
 
   <div>
     <button id="next" onclick="nextPhoto()">Next Memory ♡</button>
   </div>
 
-  <div id="ending">
-    <div id="music-container"></div>
+  <div id="music-container"></div>
 
-    <div id="message">
-      <h2 style="font-weight:normal;">One More Thing ♡</h2>
-      <p>
-        Every memory holds a little piece of a story.
-        Some moments are worth holding onto,
-        and some memories will always mean something special.
-      </p>
-    </div>
+  <div id="message">
+    <h2 style="font-weight:normal;">One More Thing ♡</h2>
+    <p>
+      Every memory holds a little piece of a story.
+      Some moments are worth holding onto,
+      and some memories will always mean something special.
+    </p>
   </div>
 </section>
 
 <script>
 const photos = [
-  "memory-1.jpg",
-  "memory-2.jpg",
-  "memory-3.jpg",
-  "memory-4.jpg",
-  "memory-5.jpg"
+  "IMG_0911_Original.jpeg",
+  "IMG_5759_Original.jpeg",
+  "IMG_3926_Original.jpeg",
+  "AVENUE_OF_THE_ARTS_COSTA_MESA_WEDDING_PHOTOGRAPHY_REBECCA&ALBERT_ENCOR_STUDIO_C1-395_Original.jpeg",
+  "AVENUE_OF_THE_ARTS_COSTA_MESA_WEDDING_PHOTOGRAPHY_REBECCA&ALBERT_ENCOR_STUDIO_C1-396_Original.jpeg"
 ];
 
 let current = 0;
@@ -180,6 +174,8 @@ function openSurprise() {
     setTimeout(petals, i * 180);
   }
 
+  setInterval(petals, 900);
+
   showPhoto();
 
   document.getElementById("music-container").innerHTML = `
@@ -199,6 +195,7 @@ function showPhoto() {
 
   setTimeout(() => {
     photo.src = photos[current];
+
     document.getElementById("counter").textContent =
       "A LITTLE MEMORY · " + (current + 1) + " OF 5";
 
