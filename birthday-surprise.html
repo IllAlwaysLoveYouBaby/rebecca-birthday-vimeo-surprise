@@ -8,340 +8,368 @@
 <title>A Little Something for You</title>
 
 <style>
-:root{--rose:#d98fa6;--ink:#55434a}
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  min-height:100vh;
-  overflow-x:hidden;
-  color:var(--ink);
-  background:linear-gradient(180deg,#fffafa,#fff1f5);
-  font-family:Georgia,"Times New Roman",serif;
+:root {
+  --rose: #d98fa6;
+  --ink: #55434a;
 }
 
-/* Small floating memory photographs */
-#memory-floats{
-  position:fixed;
-  inset:0;
-  overflow:hidden;
-  pointer-events:none;
-  z-index:1;
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--ink);
+  background: linear-gradient(180deg,#fffafa,#fff1f5);
+  font-family: Georgia,"Times New Roman",serif;
 }
 
-.floating-memory{
-  position:absolute;
-  top:-130px;
-  width:68px;
-  height:88px;
-  padding:4px 4px 10px;
-  background:#fff;
-  border:1px solid #eadde0;
-  border-radius:3px;
-  box-shadow:0 3px 12px rgba(90,55,65,.18);
-  object-fit:cover;
-  opacity:0;
-  animation:memory-fall 13s linear forwards;
+/* Small floating memory photos */
+#photo-floats {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.5s ease;
 }
 
-@keyframes memory-fall{
-  0%{
-    transform:translate3d(0,-10vh,0) rotate(-10deg);
-    opacity:0;
+body.show-photos #photo-floats {
+  opacity: 1;
+}
+
+.floating-photo {
+  position: absolute;
+  top: -125px;
+  width: 76px;
+  height: 96px;
+  padding: 4px 4px 13px;
+  object-fit: cover;
+  background: white;
+  border: 1px solid #f1dce2;
+  border-radius: 3px;
+  box-shadow: 0 4px 14px #79546230;
+  animation: photo-fall linear forwards;
+}
+
+@keyframes photo-fall {
+  0% {
+    transform: translate3d(0,-10vh,0) rotate(-8deg);
+    opacity: 0;
   }
-  12%{opacity:.9}
-  78%{opacity:.9}
-  100%{
-    transform:translate3d(55px,115vh,0) rotate(12deg);
-    opacity:0;
+  10% { opacity: .92; }
+  85% { opacity: .85; }
+  100% {
+    transform: translate3d(45px,115vh,0) rotate(12deg);
+    opacity: 0;
   }
 }
 
-/* Original falling cherry blossom petals */
-.petals{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  overflow:hidden;
-  z-index:2;
+/* Falling cherry blossom petals */
+.petals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
 }
 
-.petal{
-  position:absolute;
-  top:-12vh;
-  width:10px;
-  height:15px;
-  background:#efb5c6;
-  border-radius:90% 10% 90% 10%;
-  opacity:.72;
-  animation:fall linear infinite;
+.petal {
+  position: absolute;
+  top: -12vh;
+  width: 10px;
+  height: 15px;
+  background: #efb5c6;
+  border-radius: 90% 10% 90% 10%;
+  opacity: .72;
+  animation: fall linear infinite;
 }
 
-@keyframes fall{
-  0%{transform:translate3d(0,-10vh,0) rotate(0)}
-  100%{transform:translate3d(65px,115vh,0) rotate(540deg)}
+@keyframes fall {
+  0% {
+    transform: translate3d(0,-10vh,0) rotate(0);
+  }
+  100% {
+    transform: translate3d(65px,115vh,0) rotate(540deg);
+  }
 }
 
-/* Original page layout */
-main{
-  position:relative;
-  z-index:3;
-  width:min(92%,560px);
-  min-height:100vh;
-  margin:auto;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:42px 18px;
+/* Main layout */
+main {
+  position: relative;
+  z-index: 3;
+  width: min(92%,560px);
+  min-height: 100vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 42px 18px;
 }
 
-.eyebrow{
-  font:12px/1.4 Arial,sans-serif;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:#b77b8e;
+.eyebrow {
+  font: 12px/1.4 Arial,sans-serif;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #b77b8e;
 }
 
-h1{
-  font-size:clamp(32px,8vw,46px);
-  font-weight:normal;
-  margin:14px 0 12px;
+h1 {
+  font-size: clamp(32px,8vw,46px);
+  font-weight: normal;
+  margin: 14px 0 12px;
 }
 
-.intro{
-  font-size:18px;
-  line-height:1.65;
-  margin:0 0 30px;
-  color:#806b72;
+.intro {
+  font-size: 18px;
+  line-height: 1.65;
+  margin: 0 0 30px;
+  color: #806b72;
 }
 
-button{
-  border:1px solid #dca4b4;
-  color:#fff;
-  background:#c9879d;
-  border-radius:999px;
-  padding:15px 27px;
-  font-size:16px;
-  letter-spacing:.02em;
-  box-shadow:0 7px 20px #d99bad35;
-  cursor:pointer;
-  font-family:Arial,sans-serif;
+button {
+  border: 1px solid #dca4b4;
+  color: #fff;
+  background: #c9879d;
+  border-radius: 999px;
+  padding: 15px 27px;
+  font-size: 16px;
+  letter-spacing: .02em;
+  box-shadow: 0 7px 20px #d99bad35;
+  cursor: pointer;
+  font-family: Arial,sans-serif;
 }
 
-#surprise{
-  display:none;
-  width:100%;
-  animation:appear .9s ease both;
+#surprise {
+  display: none;
+  width: 100%;
+  animation: appear .9s ease both;
 }
 
-#surprise.show{display:block}
+#surprise.show { display: block; }
 
-@keyframes appear{
-  from{opacity:0;transform:translateY(12px)}
-  to{opacity:1;transform:translateY(0)}
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Original cherry blossom tree */
-.tree{
-  width:min(100%,340px);
-  height:auto;
-  margin:8px auto;
-  display:block;
+/* Cherry blossom tree illustration */
+.tree {
+  width: min(100%,340px);
+  height: auto;
+  margin: 8px auto;
+  display: block;
 }
 
-.message{
-  max-width:440px;
-  margin:8px auto 20px;
-  padding:22px 20px;
-  background:#ffffffc9;
-  border:1px solid #f0d6de;
-  border-radius:18px;
-  font-size:20px;
-  line-height:1.7;
-  box-shadow:0 8px 28px #b77b8e12;
+.message {
+  max-width: 440px;
+  margin: 8px auto 20px;
+  padding: 22px 20px;
+  background: #ffffffdf;
+  border: 1px solid #f0d6de;
+  border-radius: 18px;
+  font-size: 20px;
+  line-height: 1.7;
+  box-shadow: 0 8px 28px #b77b8e12;
 }
 
-.music-label{
-  font:12px/1.5 Arial,sans-serif;
-  color:#987681;
-  margin:12px 0 7px;
+.music-label {
+  font: 12px/1.5 Arial,sans-serif;
+  color: #987681;
+  margin: 12px 0 7px;
 }
 
-.player-wrap{
-  width:160px;
-  height:90px;
-  margin:0 auto;
-  overflow:hidden;
-  border-radius:10px;
-  box-shadow:0 5px 18px #79546222;
-  background:#f5e5e9;
+.player-wrap {
+  width: 160px;
+  height: 90px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 5px 18px #79546222;
+  background: #f5e5e9;
 }
 
-#player{
-  width:160px;
-  height:90px;
-  border:0;
+#player {
+  width: 160px;
+  height: 90px;
+  border: 0;
 }
 
-.music-note{
-  font:11px/1.5 Arial,sans-serif;
-  color:#9b858c;
-  max-width:300px;
-  margin:8px auto 0;
+.music-note {
+  font: 11px/1.5 Arial,sans-serif;
+  color: #9b858c;
+  max-width: 300px;
+  margin: 8px auto 0;
 }
 
-.footer{
-  margin-top:25px;
-  color:#bd91a0;
-  font-size:13px;
+.footer {
+  margin-top: 25px;
+  color: #bd91a0;
+  font-size: 13px;
+}
+
+@media (max-width: 420px) {
+  .floating-photo {
+    width: 65px;
+    height: 84px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div id="memory-floats" aria-hidden="true"></div>
+<div id="photo-floats" aria-hidden="true"></div>
 
 <div class="petals" aria-hidden="true" id="petals"></div>
 
 <main>
+  <section id="opening">
+    <div class="eyebrow">A small moment, just for you</div>
+    <h1>A Little Something for You</h1>
+    <p class="intro">Some things are worth taking a moment for...</p>
+    <button id="openButton" type="button">
+      Open Your Surprise ♡
+    </button>
+  </section>
 
-<section id="opening">
-  <div class="eyebrow">A small moment, just for you</div>
-  <h1>A Little Something for You</h1>
-  <p class="intro">Some things are worth taking a moment for...</p>
-  <button id="openButton" type="button">Open Your Surprise ♡</button>
-</section>
+  <section id="surprise" aria-live="polite">
+    <div class="eyebrow">A little surprise</div>
 
-<section id="surprise" aria-live="polite">
+    <svg class="tree" viewBox="0 0 340 230"
+      role="img" aria-label="A delicate cherry blossom tree">
+      <path d="M170 220 C165 183 177 157 164 130 C151 104 128 95 112 73 M167 145 C188 119 203 101 216 75 M163 171 C137 151 115 145 91 129 M178 157 C207 143 229 133 252 111"
+        fill="none" stroke="#876d65" stroke-width="9"
+        stroke-linecap="round"/>
 
-  <div class="eyebrow">A little surprise</div>
+      <path d="M170 219 C176 183 166 157 178 130"
+        fill="none" stroke="#876d65" stroke-width="5"
+        stroke-linecap="round"/>
 
-  <svg class="tree" viewBox="0 0 340 230" role="img" aria-label="A delicate cherry blossom tree">
-    <path d="M170 220 C165 183 177 157 164 130 C151 104 128 95 112 73 M167 145 C188 119 203 101 216 75 M163 171 C137 151 115 145 91 129 M178 157 C207 143 229 133 252 111" fill="none" stroke="#876d65" stroke-width="9" stroke-linecap="round"/>
-    <path d="M170 219 C176 183 166 157 178 130" fill="none" stroke="#876d65" stroke-width="5" stroke-linecap="round"/>
-    <g fill="#efb7c8">
-      <circle cx="87" cy="74" r="24"/>
-      <circle cx="119" cy="53" r="27"/>
-      <circle cx="151" cy="65" r="25"/>
-      <circle cx="190" cy="49" r="29"/>
-      <circle cx="224" cy="62" r="27"/>
-      <circle cx="253" cy="91" r="24"/>
-      <circle cx="104" cy="112" r="25"/>
-      <circle cx="145" cy="105" r="27"/>
-      <circle cx="199" cy="99" r="28"/>
-      <circle cx="238" cy="122" r="23"/>
-      <circle cx="72" cy="111" r="18"/>
-    </g>
-    <g fill="#fff1f5">
-      <circle cx="87" cy="74" r="7"/>
-      <circle cx="119" cy="53" r="7"/>
-      <circle cx="151" cy="65" r="7"/>
-      <circle cx="190" cy="49" r="7"/>
-      <circle cx="224" cy="62" r="7"/>
-      <circle cx="253" cy="91" r="7"/>
-      <circle cx="104" cy="112" r="7"/>
-      <circle cx="145" cy="105" r="7"/>
-      <circle cx="199" cy="99" r="7"/>
-      <circle cx="238" cy="122" r="7"/>
-    </g>
-    <g fill="#d98fa6">
-      <circle cx="119" cy="53" r="3"/>
-      <circle cx="190" cy="49" r="3"/>
-      <circle cx="145" cy="105" r="3"/>
-      <circle cx="224" cy="62" r="3"/>
-    </g>
-  </svg>
+      <g fill="#efb7c8">
+        <circle cx="87" cy="74" r="24"/>
+        <circle cx="119" cy="53" r="27"/>
+        <circle cx="151" cy="65" r="25"/>
+        <circle cx="190" cy="49" r="29"/>
+        <circle cx="224" cy="62" r="27"/>
+        <circle cx="253" cy="91" r="24"/>
+        <circle cx="104" cy="112" r="25"/>
+        <circle cx="145" cy="105" r="27"/>
+        <circle cx="199" cy="99" r="28"/>
+        <circle cx="238" cy="122" r="23"/>
+        <circle cx="72" cy="111" r="18"/>
+      </g>
 
-  <p class="message">
-    There was never a dull moment of suspense and joy you had whenever you opened a blind box especially one that could hang on your bags. I hope you get the one you want!
-  </p>
+      <g fill="#fff1f5">
+        <circle cx="87" cy="74" r="7"/>
+        <circle cx="119" cy="53" r="7"/>
+        <circle cx="151" cy="65" r="7"/>
+        <circle cx="190" cy="49" r="7"/>
+        <circle cx="224" cy="62" r="7"/>
+        <circle cx="253" cy="91" r="7"/>
+        <circle cx="104" cy="112" r="7"/>
+        <circle cx="145" cy="105" r="7"/>
+        <circle cx="199" cy="99" r="7"/>
+        <circle cx="238" cy="122" r="7"/>
+      </g>
 
-  <div class="music-label">A song to go with your surprise ♡</div>
+      <g fill="#d98fa6">
+        <circle cx="119" cy="53" r="3"/>
+        <circle cx="190" cy="49" r="3"/>
+        <circle cx="145" cy="105" r="3"/>
+        <circle cx="224" cy="62" r="3"/>
+      </g>
+    </svg>
 
-  <div class="player-wrap">
-    <iframe id="player"
-      title="Lauv - Steal The Show"
-      allow="autoplay; fullscreen; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
+    <p class="message">
+      There was never a dull moment of suspense and joy you had whenever you opened a blind box especially one that could hang on your bags. I hope you get the one you want!
+    </p>
 
-  <p class="music-note">
-    The song is set to start when you open the surprise. If your iPhone blocks playback, tap Play here.
-  </p>
+    <div class="music-label">
+      A song to go with your surprise ♡
+    </div>
 
-  <div class="footer">♡</div>
+    <div class="player-wrap">
+      <iframe id="player"
+        title="Lauv - Steal The Show"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
 
-</section>
+    <p class="music-note">
+      The song is set to start when you open the surprise. If your iPhone blocks playback, tap Play here.
+    </p>
+
+    <div class="footer">♡</div>
+  </section>
 </main>
 
 <script>
-/* Original falling petals */
-const petals=document.getElementById('petals');
+/* Create falling cherry blossom petals */
+const petals = document.getElementById('petals');
 
-for(let i=0;i<18;i++){
-  const p=document.createElement('span');
-  p.className='petal';
-  p.style.left=(Math.random()*100)+'%';
-  p.style.animationDuration=(12+Math.random()*13)+'s';
-  p.style.animationDelay=(-Math.random()*22)+'s';
-  p.style.opacity=(.35+Math.random()*.45).toFixed(2);
+for (let i = 0; i < 18; i++) {
+  const p = document.createElement('span');
+  p.className = 'petal';
+  p.style.left = (Math.random() * 100) + '%';
+  p.style.animationDuration = (12 + Math.random() * 13) + 's';
+  p.style.animationDelay = (-Math.random() * 22) + 's';
+  p.style.opacity = (.35 + Math.random() * .45).toFixed(2);
   petals.appendChild(p);
 }
 
-/* Five photographs, floating down individually */
-const memoryPhotos=[
+/* The five photos that gently float down */
+const photoFiles = [
   'IMG_0911_Original.jpeg',
   'IMG_5759_Original.jpeg',
   'IMG_3926_Original.jpeg',
-  'AVENUE_OF_THE_ARTS_COSTA_MESA_WEDDING_PHOTOGRAPHY_REBECCA%26ALBERT_ENCOR_STUDIO_C1-395_Original.jpeg',
-  'AVENUE_OF_THE_ARTS_COSTA_MESA_WEDDING_PHOTOGRAPHY_REBECCA%26ALBERT_ENCOR_STUDIO_C1-396_Original.jpeg'
+  'wedding-photo-1.jpg',
+  'wedding-photo-2.jpg'
 ];
 
-const memoryContainer=document.getElementById('memory-floats');
-let memoryIndex=0;
-let memoryTimer=null;
+const photoLayer = document.getElementById('photo-floats');
+let nextPhoto = 0;
 
-function releaseMemoryPhoto(){
-  const photo=document.createElement('img');
+function dropPhoto() {
+  const photo = document.createElement('img');
 
-  photo.className='floating-memory';
-  photo.alt='';
-  photo.src=memoryPhotos[memoryIndex];
+  photo.className = 'floating-photo';
+  photo.src = photoFiles[nextPhoto];
+  photo.alt = '';
 
-  photo.style.left=(5+Math.random()*85)+'%';
-  photo.style.animationDuration=(12+Math.random()*3)+'s';
+  nextPhoto = (nextPhoto + 1) % photoFiles.length;
 
-  photo.onerror=function(){
-    photo.remove();
-    console.error('Could not load photo:',photo.src);
-  };
+  photo.style.left = (4 + Math.random() * 88) + '%';
+  photo.style.animationDuration = (13 + Math.random() * 4) + 's';
+  photo.style.transform = 'rotate(' + (-12 + Math.random() * 24) + 'deg)';
 
-  memoryContainer.appendChild(photo);
+  photoLayer.appendChild(photo);
 
-  photo.addEventListener('animationend',function(){
+  photo.addEventListener('animationend', function() {
     photo.remove();
   });
-
-  memoryIndex=(memoryIndex+1)%memoryPhotos.length;
 }
 
-/* Open the surprise and start Vimeo */
-document.getElementById('openButton').addEventListener('click',function(){
-
-  document.getElementById('opening').style.display='none';
+/* Open surprise and request Vimeo playback with sound */
+document.getElementById('openButton').addEventListener('click', function() {
+  document.getElementById('opening').style.display = 'none';
   document.getElementById('surprise').classList.add('show');
 
-  releaseMemoryPhoto();
-  memoryTimer=setInterval(releaseMemoryPhoto,2800);
+  document.body.classList.add('show-photos');
 
-  document.getElementById('player').src=
+  dropPhoto();
+  setInterval(dropPhoto, 2800);
+
+  const player = document.getElementById('player');
+
+  player.src =
     'https://player.vimeo.com/video/1131852469?autoplay=1&muted=0&controls=1&title=0&byline=0&portrait=0';
 
-  window.scrollTo({top:0,behavior:'smooth'});
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 </script>
 
