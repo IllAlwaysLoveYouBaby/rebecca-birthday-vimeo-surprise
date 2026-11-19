@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Surprise ♡</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(145deg, #fffafa, #f8e9ee);
+  color: #765963;
+  font-family: Georgia, serif;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+#opening {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 2.1rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: #a7828e;
+}
+
+button {
+  border: 1px solid #d9b4c0;
+  background: #fff;
+  color: #936a79;
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 25px;
+}
+
+#surprise {
+  display: none;
+  min-height: 100vh;
+  padding: 35px 18px 55px;
+}
+
+#photo {
+  width: min(90%, 430px);
+  max-height: 65vh;
+  object-fit: contain;
+  border-radius: 9px;
+  box-shadow: 0 8px 30px #9d738033;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+#photo.show {
+  opacity: 1;
+}
+
+#counter {
+  margin: 20px 0 5px;
+  font-size: .85rem;
+  letter-spacing: 2px;
+  color: #b28b98;
+}
+
+#message {
+  display: none;
+  max-width: 460px;
+  margin: 35px auto;
+  line-height: 1.9;
+  font-size: 1.15rem;
+}
+
+#music {
+  width: min(100%, 420px);
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 10px;
+  margin: 25px auto;
+}
+
+.petal {
+  position: fixed;
+  top: -30px;
+  color: #e8b8c7;
+  pointer-events: none;
+  animation: fall linear forwards;
+  z-index: 10;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(500deg);
+    opacity: 0;
+  }
+}
+
+#next {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<section id="opening">
+  <div style="font-size:48px;color:#d7a5b5;">❀</div>
+  <p class="subtitle">A LITTLE SOMETHING FOR YOU</p>
+  <h1>There's a surprise waiting ♡</h1>
+  <button onclick="openSurprise()">Open Your Surprise ♡</button>
+</section>
+
+<section id="surprise">
+  <p class="subtitle">A COLLECTION OF MEMORIES</p>
+
+  <div id="counter">A LITTLE MEMORY · 1 OF 5</div>
+
+  <img id="photo" src="memory-1.jpg" alt="A special memory">
+
+  <div>
+    <button id="next" onclick="nextPhoto()">Next Memory ♡</button>
+  </div>
+
+  <div id="ending">
+    <div id="music-container"></div>
+
+    <div id="message">
+      <h2 style="font-weight:normal;">One More Thing ♡</h2>
+      <p>
+        Every memory holds a little piece of a story.
+        Some moments are worth holding onto,
+        and some memories will always mean something special.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+const photos = [
+  "memory-1.jpg",
+  "memory-2.jpg",
+  "memory-3.jpg",
+  "memory-4.jpg",
+  "memory-5.jpg"
+];
+
+let current = 0;
+
+function petals() {
+  const petal = document.createElement("div");
+  petal.className = "petal";
+  petal.textContent = "✿";
+  petal.style.left = Math.random() * 100 + "vw";
+  petal.style.fontSize = (12 + Math.random() * 17) + "px";
+  petal.style.animationDuration = (5 + Math.random() * 6) + "s";
+  document.body.appendChild(petal);
+  setTimeout(() => petal.remove(), 11000);
+}
+
+function openSurprise() {
+  document.getElementById("opening").style.display = "none";
+  document.getElementById("surprise").style.display = "block";
+
+  for (let i = 0; i < 12; i++) {
+    setTimeout(petals, i * 180);
+  }
+
+  showPhoto();
+
+  document.getElementById("music-container").innerHTML = `
+    <iframe
+      id="music"
+      src="https://player.vimeo.com/video/1131852469?autoplay=1&muted=0&title=0&byline=0&portrait=0"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  `;
+}
+
+function showPhoto() {
+  const photo = document.getElementById("photo");
+
+  photo.classList.remove("show");
+
+  setTimeout(() => {
+    photo.src = photos[current];
+    document.getElementById("counter").textContent =
+      "A LITTLE MEMORY · " + (current + 1) + " OF 5";
+
+    photo.onload = () => photo.classList.add("show");
+
+    document.getElementById("next").textContent =
+      current === 4 ? "See One More Thing ♡" : "Next Memory ♡";
+
+    document.getElementById("next").style.display = "inline-block";
+  }, 500);
+}
+
+function nextPhoto() {
+  if (current < 4) {
+    current++;
+    showPhoto();
+  } else {
+    document.getElementById("photo").style.display = "none";
+    document.getElementById("counter").style.display = "none";
+    document.getElementById("next").style.display = "none";
+    document.getElementById("message").style.display = "block";
+  }
+}
+</script>
+
+</body>
+</html>
