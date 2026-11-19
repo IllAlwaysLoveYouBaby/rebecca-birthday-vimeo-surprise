@@ -1,30 +1,26 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#fff8f8">
 <title>A Little Something for You</title>
 
 <style>
-:root {
-  --rose: #d98fa6;
-  --ink: #55434a;
+* {
+  box-sizing: border-box;
 }
-
-* { box-sizing: border-box; }
 
 body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  color: var(--ink);
-  background: linear-gradient(180deg,#fffafa,#fff1f5);
-  font-family: Georgia,"Times New Roman",serif;
+  color: #55434a;
+  background: linear-gradient(180deg, #fffafa, #fff1f5);
+  font-family: Georgia, "Times New Roman", serif;
 }
 
-/* Small floating memory photos */
 #photo-floats {
   position: fixed;
   inset: 0;
@@ -55,18 +51,21 @@ body.show-photos #photo-floats {
 
 @keyframes photo-fall {
   0% {
-    transform: translate3d(0,-10vh,0) rotate(-8deg);
+    transform: translate3d(0, -10vh, 0) rotate(-8deg);
     opacity: 0;
   }
-  10% { opacity: .92; }
-  85% { opacity: .85; }
+  10% {
+    opacity: .92;
+  }
+  85% {
+    opacity: .85;
+  }
   100% {
-    transform: translate3d(45px,115vh,0) rotate(12deg);
+    transform: translate3d(45px, 115vh, 0) rotate(12deg);
     opacity: 0;
   }
 }
 
-/* Falling cherry blossom petals */
 .petals {
   position: fixed;
   inset: 0;
@@ -88,18 +87,17 @@ body.show-photos #photo-floats {
 
 @keyframes fall {
   0% {
-    transform: translate3d(0,-10vh,0) rotate(0);
+    transform: translate3d(0, -10vh, 0) rotate(0);
   }
   100% {
-    transform: translate3d(65px,115vh,0) rotate(540deg);
+    transform: translate3d(65px, 115vh, 0) rotate(540deg);
   }
 }
 
-/* Main layout */
 main {
   position: relative;
   z-index: 3;
-  width: min(92%,560px);
+  width: min(92%, 560px);
   min-height: 100vh;
   margin: auto;
   display: flex;
@@ -111,14 +109,14 @@ main {
 }
 
 .eyebrow {
-  font: 12px/1.4 Arial,sans-serif;
+  font: 12px/1.4 Arial, sans-serif;
   letter-spacing: .22em;
   text-transform: uppercase;
   color: #b77b8e;
 }
 
 h1 {
-  font-size: clamp(32px,8vw,46px);
+  font-size: clamp(32px, 8vw, 46px);
   font-weight: normal;
   margin: 14px 0 12px;
 }
@@ -137,10 +135,8 @@ button {
   border-radius: 999px;
   padding: 15px 27px;
   font-size: 16px;
-  letter-spacing: .02em;
-  box-shadow: 0 7px 20px #d99bad35;
   cursor: pointer;
-  font-family: Arial,sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 #surprise {
@@ -149,16 +145,23 @@ button {
   animation: appear .9s ease both;
 }
 
-#surprise.show { display: block; }
-
-@keyframes appear {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+#surprise.show {
+  display: block;
 }
 
-/* Cherry blossom tree illustration */
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .tree {
-  width: min(100%,340px);
+  width: min(100%, 340px);
   height: auto;
   margin: 8px auto;
   display: block;
@@ -177,7 +180,7 @@ button {
 }
 
 .music-label {
-  font: 12px/1.5 Arial,sans-serif;
+  font: 12px/1.5 Arial, sans-serif;
   color: #987681;
   margin: 12px 0 7px;
 }
@@ -188,7 +191,6 @@ button {
   margin: 0 auto;
   overflow: hidden;
   border-radius: 10px;
-  box-shadow: 0 5px 18px #79546222;
   background: #f5e5e9;
 }
 
@@ -199,7 +201,7 @@ button {
 }
 
 .music-note {
-  font: 11px/1.5 Arial,sans-serif;
+  font: 11px/1.5 Arial, sans-serif;
   color: #9b858c;
   max-width: 300px;
   margin: 8px auto 0;
@@ -223,10 +225,10 @@ button {
 <body>
 
 <div id="photo-floats" aria-hidden="true"></div>
-
-<div class="petals" aria-hidden="true" id="petals"></div>
+<div class="petals" id="petals" aria-hidden="true"></div>
 
 <main>
+
   <section id="opening">
     <div class="eyebrow">A small moment, just for you</div>
     <h1>A Little Something for You</h1>
@@ -237,10 +239,12 @@ button {
   </section>
 
   <section id="surprise" aria-live="polite">
+
     <div class="eyebrow">A little surprise</div>
 
     <svg class="tree" viewBox="0 0 340 230"
       role="img" aria-label="A delicate cherry blossom tree">
+
       <path d="M170 220 C165 183 177 157 164 130 C151 104 128 95 112 73 M167 145 C188 119 203 101 216 75 M163 171 C137 151 115 145 91 129 M178 157 C207 143 229 133 252 111"
         fill="none" stroke="#876d65" stroke-width="9"
         stroke-linecap="round"/>
@@ -305,33 +309,47 @@ button {
     </p>
 
     <div class="footer">♡</div>
+
   </section>
 </main>
 
 <script>
-/* Create falling cherry blossom petals */
+/* Falling cherry blossom petals */
+
 const petals = document.getElementById('petals');
 
 for (let i = 0; i < 18; i++) {
-  const p = document.createElement('span');
-  p.className = 'petal';
-  p.style.left = (Math.random() * 100) + '%';
-  p.style.animationDuration = (12 + Math.random() * 13) + 's';
-  p.style.animationDelay = (-Math.random() * 22) + 's';
-  p.style.opacity = (.35 + Math.random() * .45).toFixed(2);
-  petals.appendChild(p);
+  const petal = document.createElement('span');
+
+  petal.className = 'petal';
+  petal.style.left = (Math.random() * 100) + '%';
+  petal.style.animationDuration =
+    (12 + Math.random() * 13) + 's';
+  petal.style.animationDelay =
+    (-Math.random() * 22) + 's';
+  petal.style.opacity =
+    (.35 + Math.random() * .45).toFixed(2);
+
+  petals.appendChild(petal);
 }
 
-/* The five photos that gently float down */
+/*
+  FIVE PHOTO FILES
+
+  The first three are the original photos.
+  The final two are the newly renamed wedding photos.
+*/
+
 const photoFiles = [
-  'IMG_0911_Original.jpeg',
-  'IMG_5759_Original.jpeg',
-  'IMG_3926_Original.jpeg',
-  'wedding-photo-1.jpg',
-  'wedding-photo-2.jpg'
+  './IMG_0911_Original.jpeg',
+  './IMG_5759_Original.jpeg',
+  './IMG_3926_Original.jpeg',
+  './wedding-photo-1.jpg',
+  './wedding-photo-2.jpg'
 ];
 
 const photoLayer = document.getElementById('photo-floats');
+
 let nextPhoto = 0;
 
 function dropPhoto() {
@@ -344,24 +362,33 @@ function dropPhoto() {
   nextPhoto = (nextPhoto + 1) % photoFiles.length;
 
   photo.style.left = (4 + Math.random() * 88) + '%';
-  photo.style.animationDuration = (13 + Math.random() * 4) + 's';
-  photo.style.transform = 'rotate(' + (-12 + Math.random() * 24) + 'deg)';
+  photo.style.animationDuration =
+    (13 + Math.random() * 4) + 's';
 
-  photoLayer.appendChild(photo);
+  photo.onerror = function() {
+    console.error('Could not load photo:', photo.src);
+    photo.remove();
+  };
 
   photo.addEventListener('animationend', function() {
     photo.remove();
   });
+
+  photoLayer.appendChild(photo);
 }
 
-/* Open surprise and request Vimeo playback with sound */
+/* Open the surprise */
+
 document.getElementById('openButton').addEventListener('click', function() {
+
   document.getElementById('opening').style.display = 'none';
+
   document.getElementById('surprise').classList.add('show');
 
   document.body.classList.add('show-photos');
 
   dropPhoto();
+
   setInterval(dropPhoto, 2800);
 
   const player = document.getElementById('player');
@@ -369,7 +396,11 @@ document.getElementById('openButton').addEventListener('click', function() {
   player.src =
     'https://player.vimeo.com/video/1131852469?autoplay=1&muted=0&controls=1&title=0&byline=0&portrait=0';
 
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+
 });
 </script>
 
